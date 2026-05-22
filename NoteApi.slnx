@@ -1,3 +1,14 @@
 <Solution>
+  <Folder Name="/Core/">
+    <Project Path="NoteApi.Application\NoteApi.Application.csproj" Type="Classic C#" />
+    <Project Path="NoteApi.Domain\NoteApi.Domain.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/Infrastructure/">
+    <Project Path="NoteApi.Persistence\NoteApi.Persistence.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/Presentation/">
+    <Project Path="NoteApi.WebApi\NoteApi.WebApi.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/Tests/" />
   <Project Path="src/NoteApi.csproj" />
 </Solution>
