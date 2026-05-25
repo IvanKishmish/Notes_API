@@ -7,6 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="DTOs\NoteDeleteRequestDto.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
       <ProjectReference Include="..\NoteApi.Domain\NoteApi.Domain.csproj" />
     </ItemGroup>
 

@@ -1,14 +1,16 @@
 <Solution>
-  <Folder Name="/Core/">
+  <Folder Name="/Core/" />
+  <Folder Name="/Core/NoteApi.Application/">
     <Project Path="NoteApi.Application\NoteApi.Application.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/Core/NoteApi.Domain/">
     <Project Path="NoteApi.Domain\NoteApi.Domain.csproj" Type="Classic C#" />
   </Folder>
-  <Folder Name="/Infrastructure/">
+  <Folder Name="/Infrastructure/" />
+  <Folder Name="/Infrastructure/NoteApi.Persistence/">
     <Project Path="NoteApi.Persistence\NoteApi.Persistence.csproj" Type="Classic C#" />
   </Folder>
-  <Folder Name="/Presentation/">
-    <Project Path="NoteApi.WebApi\NoteApi.WebApi.csproj" Type="Classic C#" />
-  </Folder>
+  <Folder Name="/Presentation/" />
   <Folder Name="/Tests/" />
   <Project Path="src/NoteApi.csproj" />
 </Solution>
