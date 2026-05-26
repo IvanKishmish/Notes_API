@@ -6,47 +6,60 @@ namespace NoteApi.WebApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]s")]
-public class NoteController(INoteService service) : ControllerBase
+public class NoteController(INoteService service) : ApiControllerBase
 {
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<NoteShortResponseDto>>> GetAll()
+    public async Task<IActionResult> GetAll()
     {
-        var notes = await service.GetAllAsync();
+        var result = await service.GetAllAsync();
         
-        return Ok(notes);
+        return result.Match(
+            notes => Ok(notes), 
+            errors => Problem(errors) 
+        );
     }
 
     [HttpGet("{id:guid}")]
-    public async Task<ActionResult<NoteResponseDto>> GetById(Guid id)
+    public async Task<IActionResult> GetById(Guid id)
     {
-        var note = await service.GetByIdAsync(id);
+        var result = await service.GetByIdAsync(id);
         
-        if(note is null) return NotFound();
-        
-        return Ok(note);
+        return result.Match(
+            note => Ok(note),
+            errors => Problem(errors)
+        );
     }
 
     [HttpPost]
     public async Task<IActionResult> Create(NoteCreateRequestDto dto)
     {
-        var newNote = await service.CreateAsync(dto);
+        var result = await service.CreateAsync(dto);
         
-        return CreatedAtAction(nameof(GetById), new { id = newNote.Id }, newNote);
+        return result.Match(
+            newNote => CreatedAtAction(nameof(GetById), new { id = newNote.Id }, newNote),
+            errors => Problem(errors)
+        );
     }
 
     [HttpPut("{id:guid}")]
     public async Task<IActionResult> Update(Guid id, NoteUpdateRequestDto dto)
     {
-        await service.UpdateAsync(id, dto);
+        var result = await service.UpdateAsync(id, dto);
         
-        return NoContent();
+        return result.Match(
+            _ => NoContent(), // Нам не треба змінна успіху, просто віддаємо 204
+            errors => Problem(errors)
+        );
     }
 
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> Delete(Guid id)
     {
-        await service.DeleteAsync(id);
+        var result = await service.DeleteAsync(id);
         
-        return NoContent();
+        return result.Match(
+            _ => NoContent(),
+            errors => Problem(errors)
+        );
     }
 }

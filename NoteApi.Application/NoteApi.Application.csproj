@@ -14,4 +14,8 @@
       <ProjectReference Include="..\NoteApi.Domain\NoteApi.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="ErrorOr" Version="2.1.1" />
+    </ItemGroup>
+
 </Project>
