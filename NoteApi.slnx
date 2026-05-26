@@ -11,6 +11,8 @@
     <Project Path="NoteApi.Persistence\NoteApi.Persistence.csproj" Type="Classic C#" />
   </Folder>
   <Folder Name="/Presentation/" />
+  <Folder Name="/Presentation/NoteApi.WebApi/">
+    <Project Path="NoteApi.WebApi\NoteApi.WebApi.csproj" Type="Classic C#" />
+  </Folder>
   <Folder Name="/Tests/" />
-  <Project Path="src/NoteApi.csproj" />
 </Solution>
