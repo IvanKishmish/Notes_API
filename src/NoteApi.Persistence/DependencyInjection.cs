@@ -1,6 +1,8 @@
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NoteApi.Application.DTOs;
 using NoteApi.Application.Interfaces;
 using NoteApi.Persistence.Context;
 using NoteApi.Persistence.Services;
@@ -17,6 +19,14 @@ public static class DependencyInjection
 
         // Реєструємо наш сервіс: коли хтось попросить INoteService, DI видасть NoteService
         services.AddScoped<INoteService, NoteService>();
+
+        return services;
+    }
+    
+    public static IServiceCollection AddApplication(this IServiceCollection services)
+    {
+        // Автоматично реєструє всі валідатори, що наслідуються від AbstractValidator в цій збірці
+        services.AddValidatorsFromAssembly(typeof(NoteCreateRequestDto).Assembly);
 
         return services;
     }

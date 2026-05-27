@@ -1,5 +1,6 @@
 using DotNetEnv;
 using NoteApi.Persistence; // Підключаємо наш шар Persistence
+using FluentValidation.AspNetCore;
 
 Env.Load();
 
@@ -12,6 +13,10 @@ builder.Services.AddSwaggerGen();
 
 // ОДИН РЯДОК, який підключає всю нашу базу і сервіси завдяки DependencyInjection.cs
 builder.Services.AddPersistence(builder.Configuration);
+
+builder.Services.AddApplication();
+
+builder.Services.AddFluentValidationAutoValidation();
 
 var app = builder.Build();
 
